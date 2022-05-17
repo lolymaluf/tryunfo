@@ -14,9 +14,16 @@ class App extends React.Component {
       image: '',
       rare: '',
       cardTrunfo: true,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
     };
   }
+
+  handleChange = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState(() => ({ [name]: value }), this.validaBotao);
+  }
+
 
   render() {
     const { name, description, attr1, attr2, attr3, image,
