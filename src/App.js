@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   onSaveButtonClick = () => {
-console.log('Salvou!');
+    console.log('Salvou!');
   }
 
   validaBotao = () => {
