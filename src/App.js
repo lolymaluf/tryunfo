@@ -14,6 +14,7 @@ class App extends React.Component {
       image: '',
       rare: '',
       cardTrunfo: true,
+      hasTrunfo: false,
       isSaveButtonDisabled: true,
     };
   }
@@ -24,10 +25,29 @@ class App extends React.Component {
     this.setState(() => ({ [name]: value }), this.validaBotao);
   }
 
+  onSaveButtonClick = () => {
+console.log('Salvou!');
+  }
+
+  validaBotao = () => {
+    const { name, description, attr1, attr2, attr3, image,
+      rare } = this.state;
+    let valida = true;
+    if (Number(attr1 + attr2 + attr3 > '210')) valida = false;
+    if (Number(attr1 > '90' || attr1 < 0)) valida = false;
+    if (Number(attr2 > '90' || attr2 < 0)) valida = false;
+    if (Number(attr3 > '90' || attr3 < 0)) valida = false;
+
+    if (name && description && image && rare && valida) {
+      this.setState(() => ({ isSaveButtonDisabled: false }));
+    } else {
+      this.setState(() => ({ isSaveButtonDisabled: true }));
+    }
+  }
 
   render() {
     const { name, description, attr1, attr2, attr3, image,
-      rare, cardTrunfo, isSaveButtonDisabled } = this.state;
+      rare, cardTrunfo, hasTrunfo, isSaveButtonDisabled } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -40,9 +60,21 @@ class App extends React.Component {
           cardImage={ image }
           cardRare={ rare }
           cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
+          onInputChange={ this.handleChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
-        <Card />
+        <Card
+          cardName={ name }
+          cardDescription={ description }
+          cardAttr1={ attr1 }
+          cardAttr2={ attr2 }
+          cardAttr3={ attr3 }
+          cardImage={ image }
+          cardRare={ rare }
+          cardTrunfo={ cardTrunfo }
+        />
       </div>
     );
   }
