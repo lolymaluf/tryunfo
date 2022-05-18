@@ -16,6 +16,7 @@ class App extends React.Component {
       cardTrunfo: true,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      carta: [],
     };
   }
 
@@ -26,7 +27,30 @@ class App extends React.Component {
   }
 
   onSaveButtonClick = () => {
-    console.log('Salvou!');
+    /*     console.log('Salvou!'); */
+    const { name, description, attr1, attr2, attr3, image,
+      rare } = this.state;
+    const cardObj = {
+      name,
+      description,
+      attr1,
+      attr2,
+      attr3,
+      image,
+      rare,
+    };
+    this.setState(({ carta }) => ({ carta: [...carta, cardObj] }),
+      () => {
+        this.setState(() => ({
+          name: '',
+          description: '',
+          image: '',
+          rare: 'normal',
+          attr1: 0,
+          attr2: 0,
+          attr3: 0,
+        }));
+      });
   }
 
   validaBotao = () => {
@@ -43,11 +67,21 @@ class App extends React.Component {
     } else {
       this.setState(() => ({ isSaveButtonDisabled: true }));
     }
-  }
+  };
 
   render() {
-    const { name, description, attr1, attr2, attr3, image,
-      rare, cardTrunfo, hasTrunfo, isSaveButtonDisabled } = this.state;
+    const {
+      name,
+      description,
+      attr1,
+      attr2,
+      attr3,
+      image,
+      rare,
+      cardTrunfo,
+      hasTrunfo,
+      isSaveButtonDisabled,
+    } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
