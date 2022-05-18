@@ -13,10 +13,11 @@ class App extends React.Component {
       attr3: 0,
       image: '',
       rare: '',
-      cardTrunfo: true,
+      /*       cardTrunfo: false, */
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       carta: [],
+      trunfo: false,
     };
   }
 
@@ -44,12 +45,18 @@ class App extends React.Component {
         this.setState(() => ({
           name: '',
           description: '',
-          image: '',
-          rare: 'normal',
           attr1: 0,
           attr2: 0,
           attr3: 0,
+          image: '',
+          rare: 'normal',
         }));
+        const { trunfo } = this.state;
+        if (trunfo) {
+          this.setState(() => ({
+            hasTrunfo: true,
+          }));
+        }
       });
   }
 
@@ -78,9 +85,10 @@ class App extends React.Component {
       attr3,
       image,
       rare,
-      cardTrunfo,
+      /*       cardTrunfo, */
       hasTrunfo,
       isSaveButtonDisabled,
+      trunfo,
     } = this.state;
     return (
       <div>
@@ -93,7 +101,7 @@ class App extends React.Component {
           cardAttr3={ attr3 }
           cardImage={ image }
           cardRare={ rare }
-          cardTrunfo={ cardTrunfo }
+          cardTrunfo={ trunfo }
           hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.handleChange }
@@ -107,7 +115,7 @@ class App extends React.Component {
           cardAttr3={ attr3 }
           cardImage={ image }
           cardRare={ rare }
-          cardTrunfo={ cardTrunfo }
+          cardTrunfo={ trunfo }
         />
       </div>
     );
