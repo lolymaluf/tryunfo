@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import ListOfCards from './components/ListOfCards';
 
 class App extends React.Component {
   constructor(props) {
@@ -85,10 +86,11 @@ class App extends React.Component {
       attr3,
       image,
       rare,
-      /*       cardTrunfo, */
+      /* cardTrunfo, */
       hasTrunfo,
       isSaveButtonDisabled,
       trunfo,
+      carta,
     } = this.state;
     return (
       <div>
@@ -117,6 +119,7 @@ class App extends React.Component {
           cardRare={ rare }
           cardTrunfo={ trunfo }
         />
+        <ListOfCards saved={ carta } />
       </div>
     );
   }
